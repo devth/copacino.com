@@ -1,0 +1,48 @@
+CLASS NAME CHANGES:
+
+InitSimpleProxy >> SimpleInitProxy
+InitSimpleNotifyProxy >> NotifyingInitProxy
+
+BulkAssetsProxy >> BulkLoaderInitProxy
+FontAssetProxy >> FontAssetInitProxy
+MultiAssetsProxy >> MultiAssetInitProxy
+SingleAssetProxy >> SingleAssetInitProxy
+SwfAssetProxy >> SwfAssetInitProxy
+
+----
+
+
+NEW PACKAGE STRUCTURE:
+
+com.afw.puremvc.initmonitor.model:
+	IInitProxy
+	InitMonitorProxy	(extends NotifyingInitProxy)
+	SimpleInitProxy		(implements IInitProxy)
+	NotifyingInitProxy 	(extends SimpleInitProxy by adding finishNotificationName and loadedNotificationName)
+
+com.afw.puremvc.initmonitor.model.util:
+	WaitForIInitProxy 	(extends NotifyingInitProxy)
+	
+com.afw.puremvc.initmonitor.model.bulkloader
+	BulkLoaderInitProxy 	(extends NotifyingInitProxy)
+	FontAssetInitProxy 	(extends SwfAssetInitProxy)
+	MultiAssetInitProxy 	(extends BulkLoaderInitProxy)
+	SingleAssetInitProxy	(extends MultiAssetInitProxy)
+	SwfAssetInitProxy	(extends SingleAssetInitProxy)
+	
+com.afw.puremvc.initmonitor.model.minimalremoting
+	RemotingInitProxy.as	(extends NotifyingInitProxy)
+
+---
+
+SUMMARY:
+
+com.afw.puremvc.initmonitor.model.InitSimpleProxy >> com.afw.puremvc.initmonitor.model.SimpleInitProxy
+
+com.afw.puremvc.initmonitor.model.BulkAssetsProxy >> com.afw.puremvc.initmonitor.model.bulkloader.BulkLoaderInitProxy
+com.afw.puremvc.initmonitor.model.FontAssetProxy >> com.afw.puremvc.initmonitor.model.bulkloader.FontAssetInitProxy
+com.afw.puremvc.initmonitor.model.MultiAssetsProxy >> com.afw.puremvc.initmonitor.model.bulkloader.MultiAssetInitProxy
+com.afw.puremvc.initmonitor.model.SingleAssetProxy >> com.afw.puremvc.initmonitor.model.bulkloader.SingleAssetInitProxy
+com.afw.puremvc.initmonitor.model.SwfAssetProxy >> com.afw.puremvc.initmonitor.model.bulkloader.SwfAssetInitProxy
+
+com.afw.puremvc.initmonitor.model.RemotingInitProxy >> com.afw.puremvc.initmonitor.model.minimalremoting.RemotingInitProxy 
